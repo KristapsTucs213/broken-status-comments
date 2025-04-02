@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\UserRoles;
 
 class AuthController extends Controller
 {
@@ -18,6 +19,11 @@ class AuthController extends Controller
         $user = User::create($fields);
 
         $token = $user->createToken($request->name);
+
+        $userRoles = UserRoles::create([
+            'user_id' => $request->$user->user_id,
+            'role_id' => 1
+        ]);
         
         return [
             'user' => $user,
