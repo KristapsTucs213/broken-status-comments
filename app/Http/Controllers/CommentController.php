@@ -17,7 +17,7 @@ class CommentController extends Controller implements HasMiddleware
         ];
     }
 
-    public function index()
+    public function index(Post $post)
     {
         return response()->json($post->comments);
     }
@@ -27,7 +27,9 @@ class CommentController extends Controller implements HasMiddleware
         $request->validate(['content' => 'required|string']);
 
         $comment = $post->comments()->create([
-            'content' => $request->content
+            'content' => $request->content,
+            'user_id' => $request->user()->id,
+            'post_id' => $request->$post->id()
         ]);
 
         return response()->json($comment, 201);

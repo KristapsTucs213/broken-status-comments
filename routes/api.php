@@ -12,7 +12,8 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('posts', PostController::class);
 Route::patch('posts/{post}/status', [PostController::class, 'updateStatus']);
-Route::apiResource('posts.comments', CommentController::class);
+Route::apiResource('posts/{post}/comments', CommentController::class);
+// Route::post('/posts/{post}/comments', CommentController::class);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

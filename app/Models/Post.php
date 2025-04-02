@@ -15,4 +15,14 @@ class Post extends Model
     {
         return $this->belongsTo(PostStatus::class, 'post_status_id');
     }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
