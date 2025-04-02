@@ -20,10 +20,6 @@ class AuthController extends Controller
 
         $token = $user->createToken($request->name);
 
-        $userRoles = UserRoles::create([
-            'user_id' => $request->$user->user_id,
-            'role_id' => 1
-        ]);
         
         return [
             'user' => $user,
