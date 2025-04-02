@@ -28,8 +28,7 @@ class CommentController extends Controller implements HasMiddleware
 
         $comment = $post->comments()->create([
             'content' => $request->content,
-            'user_id' => $request->user()->id,
-            'post_id' => $request->$post->id()
+            'user_id' => $request->user()->id
         ]);
 
         return response()->json($comment, 201);
